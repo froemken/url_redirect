@@ -1,5 +1,5 @@
 {
-    "name": "jweiland/url_redirect",
+    "name": "sfroemken/url_redirect",
     "type": "typo3-cms-extension",
     "description": "Redirect any URL to a new location",
     "version": "1.0.0",
