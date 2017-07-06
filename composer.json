@@ -1,0 +1,30 @@
+{
+    "name": "jweiland/url_redirect",
+    "type": "typo3-cms-extension",
+    "description": "Redirect any URL to a new location",
+    "version": "1.0.0",
+    "license": "GPL-2.0+",
+    "keywords": ["typo3", "TYPO3 CMS", "url", "redirect", "url_redirect"],
+    "homepage": "https://www.typo3lexikon.de",
+    "authors": [
+      {
+        "name": "Stefan Froemken",
+        "email": "froemken@gmail.com",
+        "role": "Lead Developer"
+      }
+    ],
+    "support": {
+      "email": "froemken@gmail.com",
+      "issues": "https://github.com/froemken/url_redirect/issues",
+      "source": "https://github.com/froemken/url_redirect"
+    },
+    "require": {
+      "php": ">=5.3.7 <8.0",
+      "typo3/cms-core": ">=6.2.14,<10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "StefanFroemken\\UrlRedirect\\": "Classes"
+        }
+    }
+}

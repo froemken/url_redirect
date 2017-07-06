@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-06-19T06:49:33Z" product-name="url_redirect">
+    <header/>
+    <body>
+      <trans-unit id="tx_urlredirect_config" xml:space="preserve">
+        <source>Redirect</source>
+      </trans-unit>
+      <trans-unit id="tx_urlredirect_config.use_reg_exp" xml:space="preserve">
+        <source>Use regular expressions</source>
+      </trans-unit>
+      <trans-unit id="tx_urlredirect_config.request_uri" xml:space="preserve">
+        <source>Request URI</source>
+      </trans-unit>
+      <trans-unit id="tx_urlredirect_config.target_uri" xml:space="preserve">
+        <source>Target URI</source>
+      </trans-unit>
+      <trans-unit id="tx_urlredirect_config.http_status" xml:space="preserve">
+        <source>HTTP status</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

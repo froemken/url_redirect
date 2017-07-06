@@ -1,0 +1,2 @@
+# cat=basic; type=boolean; label=Use RegExp: Make use of regular expressions. This option may slow down the request a little bit.
+useRegExp = 0

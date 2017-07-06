@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+  <div><f:link.action action="new" title="new" class="btn btn-primary">New</f:link.action></div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>UID</th>
+      <th>Uses RegExp</th>
+      <th>Request URI</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <f:widget.paginate objects="{configurations}" as="paginatedConfigurations">
+      <f:for each="{paginatedConfigurations}" as="config">
+        <tr>
+          <td>{config.uid}</td>
+          <td>
+            <f:if condition="{config.useRegExp}">
+              <f:then>
+                <f:be.buttons.icon title="yes" icon="status-status-permission-granted" />
+              </f:then>
+              <f:else>
+                <f:be.buttons.icon title="no" icon="status-status-permission-denied" />
+              </f:else>
+            </f:if>
+          </td>
+          <td>{config.requestUri}</td>
+          <td>
+            <f:link.action action="edit" arguments="{config: config}">
+              <f:be.buttons.icon title="edit" icon="actions-document-open" />
+            </f:link.action>
+            <f:link.action action="delete" arguments="{config: config}">
+              <f:be.buttons.icon title="delete" icon="actions-edit-delete" />
+            </f:link.action>
+          </td>
+        </tr>
+      </f:for>
+    </f:widget.paginate>
+    </tbody>
+  </table>
+</f:section>
