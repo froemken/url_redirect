@@ -1,6 +1,6 @@
 <?php
 
-namespace JWeiland\UrlRedirect\Domain\Model;
+namespace StefanFroemken\UrlRedirect\Domain\Model;
 
 /*
  * This file is part of the TYPO3 CMS project.

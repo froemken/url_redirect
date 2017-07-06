@@ -1,5 +1,5 @@
 <?php
-namespace JWeiland\UrlRedirect\Controller;
+namespace StefanFroemken\UrlRedirect\Controller;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -13,8 +13,8 @@ namespace JWeiland\UrlRedirect\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use JWeiland\UrlRedirect\Domain\Model\Config;
-use JWeiland\UrlRedirect\Domain\Repository\ConfigRepository;
+use StefanFroemken\UrlRedirect\Domain\Model\Config;
+use StefanFroemken\UrlRedirect\Domain\Repository\ConfigRepository;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 /**
  * Class PreProcess
  *
- * @package JWeiland\UrlRedirect\Controller
+ * @package StefanFroemken\UrlRedirect\Controller
  */
 class RedirectController extends ActionController
 {

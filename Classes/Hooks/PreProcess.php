@@ -1,5 +1,5 @@
 <?php
-namespace JWeiland\UrlRedirect\Hooks;
+namespace StefanFroemken\UrlRedirect\Hooks;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -78,7 +78,7 @@ class PreProcess
         $where[] = sprintf(
             'request_uri=%s',
             $this->getDatabaseConnection()->fullQuoteStr(
-                htmlspecialchars($requestUri),
+                htmlspecialchars('/' . $requestUri),
                 'tx_urlredirect_domain_model_config'
             )
         );
