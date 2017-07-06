@@ -1,4 +1,4 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers">
 
 <f:layout name="Default" />
 
@@ -22,20 +22,20 @@
           <td>
             <f:if condition="{config.useRegExp}">
               <f:then>
-                <f:be.buttons.icon title="yes" icon="status-status-permission-granted" />
+                <core:icon identifier="status-status-permission-granted" />
               </f:then>
               <f:else>
-                <f:be.buttons.icon title="no" icon="status-status-permission-denied" />
+                <core:icon identifier="status-status-permission-denied" />
               </f:else>
             </f:if>
           </td>
           <td>{config.requestUri}</td>
           <td>
             <f:link.action action="edit" arguments="{config: config}">
-              <f:be.buttons.icon title="edit" icon="actions-document-open" />
+              <core:icon identifier="actions-document-open" />
             </f:link.action>
             <f:link.action action="delete" arguments="{config: config}">
-              <f:be.buttons.icon title="delete" icon="actions-edit-delete" />
+              <core:icon identifier="actions-edit-delete" />
             </f:link.action>
           </td>
         </tr>
@@ -44,3 +44,4 @@
     </tbody>
   </table>
 </f:section>
+</html>

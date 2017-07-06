@@ -14,6 +14,7 @@ namespace StefanFroemken\UrlRedirect\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 
@@ -73,23 +74,43 @@ class PreProcess
      */
     protected function findDirectRedirect($requestUri)
     {
-        $where = [];
-        $where[] = 'use_reg_exp=0';
-        $where[] = sprintf(
-            'request_uri=%s',
-            $this->getDatabaseConnection()->fullQuoteStr(
-                htmlspecialchars('/' . $requestUri),
-                'tx_urlredirect_domain_model_config'
-            )
-        );
-        $row = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
-            'target_uri, http_status',
-            'tx_urlredirect_domain_model_config',
-            implode(' AND ', $where)
-        );
+        if (class_exists('TYPO3\\CMS\\Core\\Database\\ConnectionPool')) {
+            /** @var ConnectionPool $connectionPool */
+            $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+            $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_urlredirect_domain_model_config');
+            $statement = $queryBuilder
+                ->select('target_uri', 'http_status')
+                ->from('tx_urlredirect_domain_model_config', 'c')
+                ->where($queryBuilder->expr()->eq(
+                    'use_reg_exp',
+                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
+                )
+                ->andWhere($queryBuilder->expr()->eq(
+                    'request_uri',
+                    $queryBuilder->createNamedParameter(htmlspecialchars('/' . $requestUri), \PDO::PARAM_STR))
+                )->execute();
+            $row = $statement->fetch();
+        } else {
+            $where = [];
+            $where[] = 'use_reg_exp=0';
+            $where[] = sprintf(
+                'request_uri=%s',
+                $this->getDatabaseConnection()->fullQuoteStr(
+                    htmlspecialchars('/' . $requestUri),
+                    'tx_urlredirect_domain_model_config'
+                )
+            );
+            $row = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
+                'target_uri, http_status',
+                'tx_urlredirect_domain_model_config',
+                implode(' AND ', $where)
+            );
+        }
+
         if (empty($row)) {
             return [];
         }
+
         return $row;
     }
 
@@ -103,11 +124,25 @@ class PreProcess
     protected function findRegExpRedirect($requestUri)
     {
         $row = [];
-        $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
-            'request_uri, target_uri, http_status',
-            'tx_urlredirect_domain_model_config',
-            'use_reg_exp=1'
-        );
+        if (class_exists('TYPO3\\CMS\\Core\\Database\\ConnectionPool')) {
+            /** @var ConnectionPool $connectionPool */
+            $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+            $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_urlredirect_domain_model_config');
+            $statement = $queryBuilder
+                ->select('request_uri', 'target_uri', 'http_status')
+                ->from('tx_urlredirect_domain_model_config', 'c')
+                ->where($queryBuilder->expr()->eq(
+                    'use_reg_exp',
+                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT))
+                )->execute();
+            $rows = $statement->fetchAll();
+        } else {
+            $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
+                'request_uri, target_uri, http_status',
+                'tx_urlredirect_domain_model_config',
+                'use_reg_exp=1'
+            );
+        }
         if (!empty($rows)) {
             foreach ($rows as $row) {
                 if (preg_match('@' . $row['request_uri'] . '@', $requestUri)) {
