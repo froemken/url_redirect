@@ -69,6 +69,7 @@ class RedirectController extends ActionController
         /** @var Config $config */
         $config = $this->objectManager->get(Config::class);
         $this->view->assign('config', $config);
+        $this->view->assign('httpStatus', $this->configRepository->getHttpStatus());
     }
 
     /**
@@ -96,6 +97,7 @@ class RedirectController extends ActionController
     public function editAction(Config $config)
     {
         $this->view->assign('config', $config);
+        $this->view->assign('httpStatus', $this->configRepository->getHttpStatus());
     }
 
     /**

@@ -8,7 +8,8 @@
     <thead>
     <tr>
       <th>UID</th>
-      <th>Uses RegExp</th>
+      <th>RegExp</th>
+      <th>Status</th>
       <th>Request URI</th>
       <th>Actions</th>
     </tr>
@@ -29,6 +30,7 @@
               </f:else>
             </f:if>
           </td>
+          <td>{config.httpStatus}</td>
           <td>{config.requestUri}</td>
           <td>
             <f:link.action action="edit" arguments="{config: config}">

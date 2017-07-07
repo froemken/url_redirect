@@ -14,6 +14,8 @@ namespace StefanFroemken\UrlRedirect\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\HttpUtility;
+use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -21,4 +23,23 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class ConfigRepository extends Repository
 {
+    /**
+     * Get all HTTP status constants of HttpUtility
+     *
+     * @return array
+     */
+    public function getHttpStatus()
+    {
+        $httpStatus = [];
+        $httpReflection = new \ReflectionClass(HttpUtility::class);
+        $constants = $httpReflection->getConstants();
+        foreach ($constants as $constant => $value) {
+            if (StringUtility::beginsWith($constant, 'HTTP_STATUS_')) {
+                $status = str_replace('HTTP_STATUS_', '', $constant);
+                $httpStatus[$status] = $value;
+            }
+        }
+
+        return $httpStatus;
+    }
 }
