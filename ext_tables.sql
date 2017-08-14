@@ -20,5 +20,5 @@ CREATE TABLE tx_urlredirect_domain_model_config (
 
   PRIMARY KEY (uid),
   FULLTEXT request (request_uri),
-  FULLTEXT target (target_uri),
-);
+  FULLTEXT target (target_uri)
+) ENGINE = MyISAM;
