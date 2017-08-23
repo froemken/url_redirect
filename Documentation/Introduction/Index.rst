@@ -21,7 +21,7 @@ Releases
 Bugs and Known Issues
 ---------------------
 
-If you found a bug, it would be cool if you notify us
+If you found a bug, it would be cool if you notify me
 about that over the `Bug Tracker <https://github.com/froemken/url_redirect/issues>`_ of Github.
 
 What does it do?
@@ -36,10 +36,12 @@ If you don't have theses problems, you don't need this extension.
 
 But, if you know that problem, this extension is a little helper
 to manage redirects in TYPO3 Backend. All redirects are configured as database records
-and can be managed on TYPO3 root page UID=0.
+and can be managed over the backend module "URI Redirect". As an admin
+you can manage these records also over pid 0.
 
 You can change HTTP status of each redirect. The only limit is: Your HTTP status
-must be configured as constant in TYPO3s HttpUtility.
+must be configured as constant in TYPO3s HttpUtility. I have added a selectbox in
+backend module with all allowed HTTP status.
 
 **Little problem:**
 

@@ -9,6 +9,9 @@
       <trans-unit id="tx_urlredirect_config.use_reg_exp" xml:space="preserve">
         <source>Use regular expressions</source>
       </trans-unit>
+      <trans-unit id="tx_urlredirect_config.domain" xml:space="preserve">
+        <source>Domain</source>
+      </trans-unit>
       <trans-unit id="tx_urlredirect_config.request_uri" xml:space="preserve">
         <source>Request URI</source>
       </trans-unit>

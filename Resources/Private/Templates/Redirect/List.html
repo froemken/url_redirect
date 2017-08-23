@@ -16,7 +16,7 @@
     </thead>
 
     <tbody>
-    <f:widget.paginate objects="{configurations}" as="paginatedConfigurations">
+    <f:be.widget.paginate objects="{configurations}" as="paginatedConfigurations">
       <f:for each="{paginatedConfigurations}" as="config">
         <tr>
           <td>{config.uid}</td>
@@ -42,7 +42,7 @@
           </td>
         </tr>
       </f:for>
-    </f:widget.paginate>
+    </f:be.widget.paginate>
     </tbody>
   </table>
 </f:section>

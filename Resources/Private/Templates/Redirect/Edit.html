@@ -5,7 +5,7 @@
 <f:section name="main">
   <div><f:link.action action="list" class="btn btn-default">Back</f:link.action></div>
   <f:form action="update" name="config" object="{config}">
-    <f:render partial="FormFields" arguments="{config: config, httpStatus: httpStatus}" />
+    <f:render partial="FormFields" arguments="{config: config, httpStatus: httpStatus, domains: domains}" />
     <div><f:form.submit class="btn btn-primary" id="save" value="Save" /></div>
   </f:form>
 </f:section>

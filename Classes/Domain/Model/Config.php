@@ -35,6 +35,11 @@ class Config extends AbstractEntity
 
     /**
      * @var string
+     */
+    protected $domain = '';
+
+    /**
+     * @var string
      *
      * @validate NotEmpty
      */
@@ -67,6 +72,28 @@ class Config extends AbstractEntity
     public function setUseRegExp($useRegExp)
     {
         $this->useRegExp = (bool)$useRegExp;
+    }
+
+    /**
+     * Returns the domain
+     *
+     * @return string $domain
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+    /**
+     * Sets the domain
+     *
+     * @param string $domain
+     *
+     * @return void
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = (string)$domain;
     }
 
     /**

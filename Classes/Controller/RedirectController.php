@@ -32,6 +32,11 @@ class RedirectController extends ActionController
     protected $configRepository;
 
     /**
+     * @var string
+     */
+    protected $defaultViewObjectName = BackendTemplateView::class;
+
+    /**
      * inject configRepository
      *
      * @param ConfigRepository $configRepository
@@ -42,11 +47,6 @@ class RedirectController extends ActionController
     {
         $this->configRepository = $configRepository;
     }
-
-    /**
-     * @var string
-     */
-    protected $defaultViewObjectName = BackendTemplateView::class;
 
     /**
      * List action
@@ -70,6 +70,7 @@ class RedirectController extends ActionController
         $config = $this->objectManager->get(Config::class);
         $this->view->assign('config', $config);
         $this->view->assign('httpStatus', $this->configRepository->getHttpStatus());
+        $this->view->assign('domains', $this->configRepository->getSysDomains());
     }
 
     /**
@@ -98,6 +99,7 @@ class RedirectController extends ActionController
     {
         $this->view->assign('config', $config);
         $this->view->assign('httpStatus', $this->configRepository->getHttpStatus());
+        $this->view->assign('domains', $this->configRepository->getSysDomains());
     }
 
     /**

@@ -91,8 +91,12 @@ class PreProcess
                 )->execute();
             $row = $statement->fetch();
         } else {
+            $sysDomainUid = $this->getSysDomainUid();
             $where = [];
             $where[] = 'use_reg_exp=0';
+            if ($sysDomainUid) {
+                $where[] = '(domain=0 OR domain=' . (int)$sysDomainUid . ')';
+            }
             $where[] = sprintf(
                 'request_uri=%s',
                 $this->getDatabaseConnection()->fullQuoteStr(
@@ -100,6 +104,7 @@ class PreProcess
                     'tx_urlredirect_domain_model_config'
                 )
             );
+
             $row = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
                 'target_uri, http_status',
                 'tx_urlredirect_domain_model_config',
@@ -158,6 +163,31 @@ class PreProcess
             }
         }
         return $row;
+    }
+
+    /**
+     * Try to find a sysDomain record that matches current request
+     *
+     * @return int
+     */
+    protected function getSysDomainUid()
+    {
+        $sysDomain = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
+            'uid',
+            'sys_domain',
+            sprintf(
+                'domainName=%s AND hidden=0 AND redirectTo=\'\'',
+                $this->getDatabaseConnection()->fullQuoteStr(
+                    GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'),
+                    'sys_domain'
+                )
+            )
+        );
+        if (empty($sysDomain)) {
+            return 0;
+        } else {
+            return $sysDomain['uid'];
+        }
     }
 
     /**

@@ -31,6 +31,10 @@ The URL redirect record is the most important record in this extension.
 
          Be carefully, with that option you can create unlimited redirects very easily.
  - :Field:
+         domain
+   :Description:
+         Select domain, for which this record should be valid
+ - :Field:
          request_uri
    :Description:
          The path and query part of URI that has to match. Instead of

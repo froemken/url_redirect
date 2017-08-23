@@ -14,6 +14,7 @@ namespace StefanFroemken\UrlRedirect\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -41,5 +42,32 @@ class ConfigRepository extends Repository
         }
 
         return $httpStatus;
+    }
+
+    /**
+     * Get all SYS Domains configured in TYPO3
+     *
+     * @return array
+     */
+    public function getSysDomains()
+    {
+        $sysDomains = BackendUtility::getRecordsByField(
+            'sys_domain',
+            'redirectTo',
+            '',
+            ' AND hidden=0',
+            '', 'domainName ASC'
+        );
+
+        if (empty($sysDomains)) {
+            $sysDomains = [];
+        }
+
+        $domains = [];
+        foreach ($sysDomains as $domain) {
+            $domains[$domain['uid']] = $domain['domainName'];
+        }
+
+        return $domains;
     }
 }

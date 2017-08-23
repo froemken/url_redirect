@@ -6,6 +6,7 @@ CREATE TABLE tx_urlredirect_domain_model_config (
   pid int(11) unsigned DEFAULT '0' NOT NULL,
 
   use_reg_exp tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  domain int(11) unsigned DEFAULT '0' NOT NULL,
   request_uri text NOT NULL,
   target_uri text NOT NULL,
   http_status int(4) unsigned DEFAULT '0' NOT NULL,

@@ -11,6 +11,10 @@
         <source>Use regular expressions</source>
         <target>Verwende reguläre Ausdrücke</target>
       </trans-unit>
+      <trans-unit id="tx_urlredirect_config.domain" xml:space="preserve">
+        <source>Domain</source>
+        <target>Domain</target>
+      </trans-unit>
       <trans-unit id="tx_urlredirect_config.request_uri" xml:space="preserve">
         <source>Request URI</source>
         <target>Anfrage URI</target>
