@@ -30,7 +30,7 @@ class PreProcess
      */
     public function redirect(array $parameters, array $parent)
     {
-        $requestUri = trim(GeneralUtility::getIndpEnv('REQUEST_URI'), '/');
+        $requestUri = GeneralUtility::getIndpEnv('REQUEST_URI');
         $target = $this->findRedirect($requestUri);
         if (empty($target)) {
             return;
@@ -100,7 +100,7 @@ class PreProcess
             $where[] = sprintf(
                 'request_uri=%s',
                 $this->getDatabaseConnection()->fullQuoteStr(
-                    htmlspecialchars('/' . $requestUri),
+                    htmlspecialchars($requestUri),
                     'tx_urlredirect_domain_model_config'
                 )
             );

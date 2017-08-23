@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T12:30:33Z" product-name="url_redirect">
+    <header/>
+    <body>
+      <trans-unit id="back" xml:space="preserve">
+        <source>Back</source>
+        <target>Zurück</target>
+      </trans-unit>
+      <trans-unit id="save" xml:space="preserve">
+        <source>Save</source>
+        <target>Speichern</target>
+      </trans-unit>
+      <trans-unit id="useRegExp" xml:space="preserve">
+        <source>Use regular expressions. This may slow down redirect a little bit</source>
+        <target>Verwende reguläre Ausdrücke. Dies reduziert die Weiterleitung jedoch ein wenig</target>
+      </trans-unit>
+      <trans-unit id="domain" xml:space="preserve">
+        <source>Domain</source>
+        <target>Domain</target>
+      </trans-unit>
+      <trans-unit id="requestUri" xml:space="preserve">
+        <source>Request URI: Should start with / in most cases</source>
+        <target>Anfrage URI: Sollte in den meisten Fällen mit / beginnen</target>
+      </trans-unit>
+      <trans-unit id="targetUri" xml:space="preserve">
+        <source>Target URI: Complete URI incl. scheme like: http://...</source>
+        <target>Ziel URI: Komplette URI inkl. Schema wie http://</target>
+      </trans-unit>
+      <trans-unit id="httpStatus" xml:space="preserve">
+        <source>HTTP status</source>
+        <target>HTTP Status</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
