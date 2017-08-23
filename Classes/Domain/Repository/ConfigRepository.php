@@ -3,7 +3,7 @@
 namespace StefanFroemken\UrlRedirect\Domain\Repository;
 
 /*
- * This file is part of the TYPO3 CMS project.
+ * This file is part of the url_redirect project.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -14,7 +14,7 @@ namespace StefanFroemken\UrlRedirect\Domain\Repository;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use TYPO3\CMS\Backend\Utility\BackendUtility;
+use StefanFroemken\UrlRedirect\Utility\DatabaseUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -51,7 +51,7 @@ class ConfigRepository extends Repository
      */
     public function getSysDomains()
     {
-        $sysDomains = BackendUtility::getRecordsByField(
+        $sysDomains = DatabaseUtility::getRecordsByField(
             'sys_domain',
             'redirectTo',
             '',

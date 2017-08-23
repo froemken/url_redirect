@@ -9,6 +9,11 @@
   <label for="sysDomain" class="control-label">{f:translate(key: 'domain')}</label>
   <f:form.select class="form-control" id="sysDomain" property="domain" options="{domains}" />
 </div>
+<div class="checkbox">
+  <label>
+    <f:form.checkbox id="completeDomain" property="completeDomain" value="1" /> {f:translate(key: 'completeDomain')}
+  </label>
+</div>
 <div class="form-group">
   <label for="requestUri" class="control-label">{f:translate(key: 'requestUri')}</label>
   <f:form.textfield class="form-control" id="requestUri" property="requestUri" placeholder="/extensions/url_redirect.html" />

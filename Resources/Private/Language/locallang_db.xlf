@@ -12,6 +12,9 @@
       <trans-unit id="tx_urlredirect_config.domain" xml:space="preserve">
         <source>Domain</source>
       </trans-unit>
+      <trans-unit id="tx_urlredirect_config.complete_domain" xml:space="preserve">
+        <source>Redirect complete domain</source>
+      </trans-unit>
       <trans-unit id="tx_urlredirect_config.request_uri" xml:space="preserve">
         <source>Request URI</source>
       </trans-unit>

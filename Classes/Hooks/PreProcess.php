@@ -2,7 +2,7 @@
 namespace StefanFroemken\UrlRedirect\Hooks;
 
 /*
- * This file is part of the TYPO3 CMS project.
+ * This file is part of the url_redirect project.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -14,10 +14,17 @@ namespace StefanFroemken\UrlRedirect\Hooks;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Database\ConnectionPool;
+use StefanFroemken\UrlRedirect\Utility\DatabaseUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\HttpUtility;
 
+/**
+ * Class PreProcess
+ *
+ * BEenableFields and deleteClause will not work here, as TCA was not created until now
+ *
+ * @package StefanFroemken\UrlRedirect\Hooks
+ */
 class PreProcess
 {
     /**
@@ -74,49 +81,27 @@ class PreProcess
      */
     protected function findDirectRedirect($requestUri)
     {
-        if (class_exists('TYPO3\\CMS\\Core\\Database\\ConnectionPool')) {
-            /** @var ConnectionPool $connectionPool */
-            $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
-            $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_urlredirect_domain_model_config');
-            $statement = $queryBuilder
-                ->select('target_uri', 'http_status')
-                ->from('tx_urlredirect_domain_model_config', 'c')
-                ->where($queryBuilder->expr()->eq(
-                    'use_reg_exp',
-                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
-                )
-                ->andWhere($queryBuilder->expr()->eq(
-                    'request_uri',
-                    $queryBuilder->createNamedParameter(htmlspecialchars('/' . $requestUri), \PDO::PARAM_STR))
-                )->execute();
-            $row = $statement->fetch();
-        } else {
-            $sysDomainUid = $this->getSysDomainUid();
-            $where = [];
-            $where[] = 'use_reg_exp=0';
-            if ($sysDomainUid) {
-                $where[] = '(domain=0 OR domain=' . (int)$sysDomainUid . ')';
-            }
-            $where[] = sprintf(
-                'request_uri=%s',
-                $this->getDatabaseConnection()->fullQuoteStr(
-                    htmlspecialchars($requestUri),
-                    'tx_urlredirect_domain_model_config'
-                )
-            );
-
-            $row = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
-                'target_uri, http_status',
-                'tx_urlredirect_domain_model_config',
-                implode(' AND ', $where)
-            );
+        $sysDomainUid = $this->getSysDomainUid();
+        $where = [];
+        $where[] = 'hidden=0';
+        if ($sysDomainUid) {
+            $where[] = '(domain=0 OR domain=' . (int)$sysDomainUid . ')';
         }
 
-        if (empty($row)) {
+        // we sort by complete domain. So, if there is a record this one has priority
+        $redirects = DatabaseUtility::getRecordsByField(
+            'tx_urlredirect_domain_model_config',
+            'hidden',
+            '0',
+            ' AND ((use_reg_exp=0 AND request_uri=\'' . htmlspecialchars($requestUri) . '\') OR complete_domain=1) AND ' . implode(' AND ', $where),
+            '', 'complete_domain ASC'
+        );
+
+        if (empty($redirects)) {
             return [];
         }
 
-        return $row;
+        return current($redirects);
     }
 
     /**
@@ -128,41 +113,30 @@ class PreProcess
      */
     protected function findRegExpRedirect($requestUri)
     {
-        $row = [];
-        if (class_exists('TYPO3\\CMS\\Core\\Database\\ConnectionPool')) {
-            /** @var ConnectionPool $connectionPool */
-            $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
-            $queryBuilder = $connectionPool->getQueryBuilderForTable('tx_urlredirect_domain_model_config');
-            $statement = $queryBuilder
-                ->select('request_uri', 'target_uri', 'http_status')
-                ->from('tx_urlredirect_domain_model_config', 'c')
-                ->where($queryBuilder->expr()->eq(
-                    'use_reg_exp',
-                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT))
-                )->execute();
-            $rows = $statement->fetchAll();
-        } else {
-            $rows = $this->getDatabaseConnection()->exec_SELECTgetRows(
-                'request_uri, target_uri, http_status',
-                'tx_urlredirect_domain_model_config',
-                'use_reg_exp=1'
-            );
+        $redirects = DatabaseUtility::getRecordsByField(
+            'tx_urlredirect_domain_model_config',
+            'use_reg_exp',
+            '1',
+            ' AND hidden=0 AND deleted=0'
+        );
+        if (empty($redirects)) {
+            return [];
         }
-        if (!empty($rows)) {
-            foreach ($rows as $row) {
-                if (preg_match('@' . $row['request_uri'] . '@', $requestUri)) {
-                    $row['target_uri'] = preg_replace(
-                        '@' . $row['request_uri'] . '@',
-                        $row['target_uri'],
-                        $requestUri
-                    );
-                    break;
-                } else {
-                    $row = [];
-                }
+
+        $redirect = [];
+        foreach ($redirects as $redirect) {
+            if (preg_match('@' . $redirect['request_uri'] . '@', $requestUri)) {
+                $redirect['target_uri'] = preg_replace(
+                    '@' . $redirect['request_uri'] . '@',
+                    $redirect['target_uri'],
+                    $requestUri
+                );
+                break;
+            } else {
+                $redirect = [];
             }
         }
-        return $row;
+        return $redirect;
     }
 
     /**
@@ -172,32 +146,19 @@ class PreProcess
      */
     protected function getSysDomainUid()
     {
-        $sysDomain = $this->getDatabaseConnection()->exec_SELECTgetSingleRow(
-            'uid',
+        $domain = DatabaseUtility::getRecordRaw(
             'sys_domain',
             sprintf(
-                'domainName=%s AND hidden=0 AND redirectTo=\'\'',
-                $this->getDatabaseConnection()->fullQuoteStr(
-                    GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'),
-                    'sys_domain'
-                )
-            )
+                'domainName=\'%s\' AND redirectTo=\'\' AND hidden=0',
+                htmlspecialchars(GeneralUtility::getIndpEnv('HTTP_HOST'))
+            ),
+            'uid'
         );
-        if (empty($sysDomain)) {
+
+        if (empty($domain)) {
             return 0;
         } else {
-            return $sysDomain['uid'];
+            return (int)$domain['uid'];
         }
     }
-
-    /**
-     * Get TYPO3s Database Connection
-     *
-     * @return \TYPO3\CMS\Core\Database\DatabaseConnection
-     */
-    protected function getDatabaseConnection()
-    {
-        return $GLOBALS['TYPO3_DB'];
-    }
-
 }

@@ -35,6 +35,10 @@ The URL redirect record is the most important record in this extension.
    :Description:
          Select domain, for which this record should be valid
  - :Field:
+         complete_domain
+   :Description:
+         If this checkbox is set, than all requests for selected domain, will be redirected to targed. Regardless of request URI
+ - :Field:
          request_uri
    :Description:
          The path and query part of URI that has to match. Instead of

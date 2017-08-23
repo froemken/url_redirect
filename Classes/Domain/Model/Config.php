@@ -3,7 +3,7 @@
 namespace StefanFroemken\UrlRedirect\Domain\Model;
 
 /*
- * This file is part of the TYPO3 CMS project.
+ * This file is part of the url_redirect project.
  *
  * It is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License, either version 2
@@ -28,15 +28,20 @@ class Config extends AbstractEntity
 
     /**
      * @var string
+     */
+    protected $domain = '';
+
+    /**
+     * @var bool
+     */
+    protected $completeDomain = false;
+
+    /**
+     * @var string
      *
      * @validate NotEmpty
      */
     protected $requestUri = '';
-
-    /**
-     * @var string
-     */
-    protected $domain = '';
 
     /**
      * @var string
@@ -94,6 +99,28 @@ class Config extends AbstractEntity
     public function setDomain($domain)
     {
         $this->domain = (string)$domain;
+    }
+
+    /**
+     * Returns the completeDomain
+     *
+     * @return bool $completeDomain
+     */
+    public function getCompleteDomain()
+    {
+        return $this->completeDomain;
+    }
+
+    /**
+     * Sets the completeDomain
+     *
+     * @param bool $completeDomain
+     *
+     * @return void
+     */
+    public function setCompleteDomain($completeDomain)
+    {
+        $this->completeDomain = (bool)$completeDomain;
     }
 
     /**

@@ -19,6 +19,10 @@
         <source>Domain</source>
         <target>Domain</target>
       </trans-unit>
+      <trans-unit id="completeDomain" xml:space="preserve">
+        <source>Redirect complete domain. Regardless of request URI</source>
+        <target>Komplette Domain weiterleiten. Unabhängig von der Anfrage URI</target>
+      </trans-unit>
       <trans-unit id="requestUri" xml:space="preserve">
         <source>Request URI: Should start with / in most cases</source>
         <target>Anfrage URI: Sollte in den meisten Fällen mit / beginnen</target>

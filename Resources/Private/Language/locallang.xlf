@@ -15,6 +15,9 @@
       <trans-unit id="domain" xml:space="preserve">
         <source>Domain</source>
       </trans-unit>
+      <trans-unit id="completeDomain" xml:space="preserve">
+        <source>Redirect complete domain. Regardless of request URI</source>
+      </trans-unit>
       <trans-unit id="requestUri" xml:space="preserve">
         <source>Request URI: Should start with / in most cases</source>
       </trans-unit>

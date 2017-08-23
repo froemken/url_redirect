@@ -19,7 +19,7 @@ return [
         ],
     ],
     'interface' => [
-        'showRecordFieldList' => 'hidden,use_reg_exp,domain,request_uri,target_uri'
+        'showRecordFieldList' => 'hidden,use_reg_exp,domain,complete_domain,request_uri,target_uri,http_status'
     ],
     'columns' => [
         'pid' => [
@@ -65,6 +65,14 @@ return [
                 'eval' => 'trim'
             ]
         ],
+        'complete_domain' => [
+            'exclude' => 1,
+            'label' => $ll . 'tx_urlredirect_config.complete_domain',
+            'config' => [
+                'type' => 'check',
+                'default' => 0
+            ]
+        ],
         'request_uri' => [
             'exclude' => 1,
             'label' => $ll . 'tx_urlredirect_config.request_uri',
@@ -96,7 +104,7 @@ return [
     ],
     'types' => [
         1 => [
-            'showitem' => 'use_reg_exp, domain, request_uri, target_uri, http_status'
+            'showitem' => 'use_reg_exp, domain, complete_domain, request_uri, target_uri, http_status'
         ]
     ],
 ];

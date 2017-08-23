@@ -13,7 +13,7 @@ URL redirect
 
 :Extension name: |extension_name|
 :Extension key: |extension_key|
-:Version: 1.0.0
+:Version: 1.1.0
 :Description: With this extension you can realize redirects on matching request URLs
 :Language: en
 :Author: |author|
