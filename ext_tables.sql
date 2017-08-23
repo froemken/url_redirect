@@ -19,7 +19,5 @@ CREATE TABLE tx_urlredirect_domain_model_config (
   starttime int(11) unsigned DEFAULT '0' NOT NULL,
   endtime int(11) unsigned DEFAULT '0' NOT NULL,
 
-  PRIMARY KEY (uid),
-  FULLTEXT request (request_uri),
-  FULLTEXT target (target_uri),
+  PRIMARY KEY (uid)
 );
