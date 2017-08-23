@@ -15,6 +15,7 @@ namespace StefanFroemken\UrlRedirect\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -158,8 +159,8 @@ class DatabaseUtility {
                 '*',
                 $theTable,
                 $theField . '=' . $db->fullQuoteStr($theValue, $theTable) .
-                ($useDeleteClause ? self::deleteClause($theTable) . ' ' : '') .
-                self::versioningPlaceholderClause($theTable) . ' ' .
+                ($useDeleteClause ? BackendUtility::deleteClause($theTable) . ' ' : '') .
+                BackendUtility::versioningPlaceholderClause($theTable) . ' ' .
                 $whereClause,
                 $groupBy,
                 $orderBy,

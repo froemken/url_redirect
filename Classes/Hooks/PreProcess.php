@@ -21,8 +21,6 @@ use TYPO3\CMS\Core\Utility\HttpUtility;
 /**
  * Class PreProcess
  *
- * BEenableFields and deleteClause will not work here, as TCA was not created until now
- *
  * @package StefanFroemken\UrlRedirect\Hooks
  */
 class PreProcess
