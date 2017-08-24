@@ -3,6 +3,10 @@
   <file source-language="en" datatype="plaintext" original="messages" date="2017-08-23T12:30:33Z" product-name="url_redirect">
     <header/>
     <body>
+      <trans-unit id="newEntry" xml:space="preserve">
+        <source>New entry</source>
+        <target>Neuer Eintrag</target>
+      </trans-unit>
       <trans-unit id="back" xml:space="preserve">
         <source>Back</source>
         <target>Zurück</target>
@@ -34,6 +38,31 @@
       <trans-unit id="httpStatus" xml:space="preserve">
         <source>HTTP status</source>
         <target>HTTP Status</target>
+      </trans-unit>
+
+      <trans-unit id="header.useRegExp" xml:space="preserve">
+        <source>RegExp</source>
+        <target>RegExp</target>
+      </trans-unit>
+      <trans-unit id="header.domain" xml:space="preserve">
+        <source>Domain</source>
+        <target>Domain</target>
+      </trans-unit>
+      <trans-unit id="header.completeDomain" xml:space="preserve">
+        <source>Redirect all</source>
+        <target>Alles weiterleiten</target>
+      </trans-unit>
+      <trans-unit id="header.uris" xml:space="preserve">
+        <source>Request/Target</source>
+        <target>Anfrage/Zielseite</target>
+      </trans-unit>
+      <trans-unit id="header.httpStatus" xml:space="preserve">
+        <source>Status</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="header.actions" xml:space="preserve">
+        <source>Actions</source>
+        <target>Aktionen</target>
       </trans-unit>
     </body>
   </file>

@@ -27,9 +27,9 @@ class Config extends AbstractEntity
     protected $useRegExp = false;
 
     /**
-     * @var string
+     * @var \StefanFroemken\UrlRedirect\Domain\Model\Domain
      */
-    protected $domain = '';
+    protected $domain;
 
     /**
      * @var bool
@@ -82,7 +82,7 @@ class Config extends AbstractEntity
     /**
      * Returns the domain
      *
-     * @return string $domain
+     * @return Domain $domain
      */
     public function getDomain()
     {
@@ -92,13 +92,13 @@ class Config extends AbstractEntity
     /**
      * Sets the domain
      *
-     * @param string $domain
+     * @param Domain $domain
      *
      * @return void
      */
     public function setDomain($domain)
     {
-        $this->domain = (string)$domain;
+        $this->domain = $domain;
     }
 
     /**

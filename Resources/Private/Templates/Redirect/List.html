@@ -3,15 +3,20 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-  <div><f:link.action action="new" title="new" class="btn btn-primary">New</f:link.action></div>
+  <div>
+    <f:link.action action="new" title="new" class="btn btn-primary">{f:translate(key: 'newEntry')}</f:link.action>
+  </div>
+
   <table class="table">
     <thead>
     <tr>
       <th>UID</th>
-      <th>RegExp</th>
-      <th>Status</th>
-      <th>Request URI</th>
-      <th>Actions</th>
+      <th>{f:translate(key: 'header.domain')}</th>
+      <th>{f:translate(key: 'header.completeDomain')}</th>
+      <th>{f:translate(key: 'header.useRegExp')}</th>
+      <th>{f:translate(key: 'header.uris')}</th>
+      <th>{f:translate(key: 'header.httpStatus')}</th>
+      <th>{f:translate(key: 'header.actions')}</th>
     </tr>
     </thead>
 
@@ -20,6 +25,22 @@
       <f:for each="{paginatedConfigurations}" as="config">
         <tr>
           <td>{config.uid}</td>
+          <td>
+            <f:if condition="{config.domain}">
+              <f:then>{config.domain.domainName}</f:then>
+              <f:else>all</f:else>
+            </f:if>
+          </td>
+          <td>
+            <f:if condition="{config.completeDomain}">
+              <f:then>
+                <core:icon identifier="status-status-permission-granted" />
+              </f:then>
+              <f:else>
+                <core:icon identifier="status-status-permission-denied" />
+              </f:else>
+            </f:if>
+          </td>
           <td>
             <f:if condition="{config.useRegExp}">
               <f:then>
@@ -30,8 +51,11 @@
               </f:else>
             </f:if>
           </td>
+          <td>
+            <core:icon identifier="actions-move-right" />{config.targetUri}<br />
+            <core:icon identifier="actions-move-left" />{config.requestUri}
+          </td>
           <td>{config.httpStatus}</td>
-          <td>{config.requestUri}</td>
           <td>
             <f:link.action action="edit" arguments="{config: config}">
               <core:icon identifier="actions-document-open" />
