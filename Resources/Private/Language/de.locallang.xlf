@@ -7,6 +7,14 @@
         <source>New entry</source>
         <target>Neuer Eintrag</target>
       </trans-unit>
+      <trans-unit id="showRedirects" xml:space="preserve">
+        <source>Show redirects</source>
+        <target>Auflistung Weiterleitungen</target>
+      </trans-unit>
+      <trans-unit id="importRedirects" xml:space="preserve">
+        <source>Import redirects</source>
+        <target>Importiere Weiterleitungen</target>
+      </trans-unit>
       <trans-unit id="back" xml:space="preserve">
         <source>Back</source>
         <target>Zurück</target>
@@ -14,6 +22,26 @@
       <trans-unit id="save" xml:space="preserve">
         <source>Save</source>
         <target>Speichern</target>
+      </trans-unit>
+      <trans-unit id="import" xml:space="preserve">
+        <source>Import</source>
+        <target>Importieren</target>
+      </trans-unit>
+      <trans-unit id="separator" xml:space="preserve">
+        <source>Separator of values in one row</source>
+        <target>Trenner der Werte innerhalb einer Zeile</target>
+      </trans-unit>
+      <trans-unit id="quote" xml:space="preserve">
+        <source>With which char text values are quoted?</source>
+        <target>Mit welchem Zeichen werden Texte in der CSV zitiert (quote)?</target>
+      </trans-unit>
+      <trans-unit id="escape" xml:space="preserve">
+        <source>With which char the above quote value should be escaped, if in text?</source>
+        <target>Mit welchem Zeichen soll das oben genannte Zitat Zeichen maskiert werden, sofern es sich auch innerhalb des Textes befindet?</target>
+      </trans-unit>
+      <trans-unit id="csvFile" xml:space="preserve">
+        <source>CSV file</source>
+        <target>CSV Datei</target>
       </trans-unit>
       <trans-unit id="useRegExp" xml:space="preserve">
         <source>Use regular expressions. This may slow down redirect a little bit</source>
@@ -38,6 +66,22 @@
       <trans-unit id="httpStatus" xml:space="preserve">
         <source>HTTP status</source>
         <target>HTTP Status</target>
+      </trans-unit>
+      <trans-unit id="headerImport" xml:space="preserve">
+        <source>Import with a CSV file</source>
+        <target>Import mittels CSV Datei</target>
+      </trans-unit>
+      <trans-unit id="explainImport" xml:space="preserve">
+        <source>
+          You can import multiple values with a CSV file.
+          Don't add a header row with field names in CSV.
+          Only three values for each row are allowed: request uri, target uri and http status
+        </source>
+        <target>
+          Du kannst mehrere Einträge mit Hilfe einer CSV Datei importieren.
+          Füge der CSV Datei keine Kopfzeile für die Feldnamen hinzu.
+          Es werden nur 3 Werte importiert: Anfrage URI, Ziel URI und der HTTP Status
+        </target>
       </trans-unit>
 
       <trans-unit id="header.useRegExp" xml:space="preserve">

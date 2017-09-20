@@ -6,11 +6,32 @@
       <trans-unit id="newEntry" xml:space="preserve">
         <source>New entry</source>
       </trans-unit>
+      <trans-unit id="showRedirects" xml:space="preserve">
+        <source>Show redirects</source>
+      </trans-unit>
+      <trans-unit id="importRedirects" xml:space="preserve">
+        <source>Import redirects</source>
+      </trans-unit>
       <trans-unit id="back" xml:space="preserve">
         <source>Back</source>
       </trans-unit>
       <trans-unit id="save" xml:space="preserve">
         <source>Save</source>
+      </trans-unit>
+      <trans-unit id="import" xml:space="preserve">
+        <source>Import</source>
+      </trans-unit>
+      <trans-unit id="separator" xml:space="preserve">
+        <source>Separator of values in one row</source>
+      </trans-unit>
+      <trans-unit id="quote" xml:space="preserve">
+        <source>With which char text values are quoted?</source>
+      </trans-unit>
+      <trans-unit id="escape" xml:space="preserve">
+        <source>With which char the above quote value should be escaped, if in text?</source>
+      </trans-unit>
+      <trans-unit id="csvFile" xml:space="preserve">
+        <source>CSV file</source>
       </trans-unit>
       <trans-unit id="useRegExp" xml:space="preserve">
         <source>Use regular expressions. This may slow down redirect a little bit</source>
@@ -29,6 +50,16 @@
       </trans-unit>
       <trans-unit id="httpStatus" xml:space="preserve">
         <source>HTTP status</source>
+      </trans-unit>
+      <trans-unit id="headerImport" xml:space="preserve">
+        <source>Import with a CSV file</source>
+      </trans-unit>
+      <trans-unit id="explainImport" xml:space="preserve">
+        <source>
+          You can import multiple values with a CSV file.
+          Don't add a header row with field names in CSV.
+          Only three values for each row are allowed: request uri, target uri and http status
+        </source>
       </trans-unit>
 
       <trans-unit id="header.useRegExp" xml:space="preserve">

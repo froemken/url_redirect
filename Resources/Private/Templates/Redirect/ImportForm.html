@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers">
+
+<f:layout name="Default" />
+
+<f:section name="main">
+  <h1>{f:translate(key: 'headerImport')}</h1>
+  <p>{f:translate(key: 'explainImport')}</p>
+  <f:form action="import" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="separator" class="control-label">{f:translate(key: 'separator')}</label>
+      <f:form.textfield class="form-control" id="separator" name="separator" maxlength="1" value="{separator}" />
+    </div>
+    <div class="form-group">
+      <label for="quote" class="control-label">{f:translate(key: 'quote')}</label>
+      <f:form.textfield class="form-control" id="quote" name="quote" maxlength="1" value='{quote}' />
+    </div>
+    <div class="form-group">
+      <label for="escape" class="control-label">{f:translate(key: 'escape')}</label>
+      <f:form.textfield class="form-control" id="escape" name="escape" maxlength="1" value="{escape}" />
+    </div>
+    <div class="form-group">
+      <label for="csvFile" class="control-label">{f:translate(key: 'csvFile')}</label>
+      <f:form.upload class="form-control" id="csvImportFile" name="csvFile" />
+    </div>
+    <div><f:form.submit class="btn btn-primary" id="import" value="{f:translate(key: 'import')}" /></div>
+  </f:form>
+</f:section>
+</html>

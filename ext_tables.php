@@ -15,7 +15,7 @@ if (TYPO3_MODE === 'BE') {
         'web',
         'tx_urirequest_mod1',
         '',
-        ['Redirect' => 'list, new, create, edit, update, delete, doDelete'],
+        ['Redirect' => 'list, new, create, edit, update, delete, doDelete, importForm, import'],
         [
             'access' => 'user,group',
             'icon' => 'EXT:url_redirect/Resources/Public/Icons/module_redirect.svg',
