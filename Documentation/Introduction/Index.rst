@@ -51,3 +51,26 @@ milliseconds. Please test theses timings on your own machine and decide, if this
 will match your needs.
 
 You can not use that extension to redirect from HTTP to HTTPS or vise versa.
+
+Backend Module
+--------------
+
+This extension delivers a backend module called "URL redirect" which is split
+into two areas: "Show redirects" and "import redirects"
+
+Show redirects
+**************
+
+Here you can see all defined redirects, create new, delete and edit redirects.
+
+Import redirects
+****************
+
+In this area you can upload a CSV or TXT file with redirect records.
+Currently we only import request URI, target URI and HTTP status.
+Please do not add a header row with fieldnames in CSV file.
+I do not check for charset or whatever. I prefer to upload CSV file
+in UTF-8 format.
+You can set separator, escape char and quote char in import form.
+All files will be imported into PID 0.
+There is no check, if a record already exists.
