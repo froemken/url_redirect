@@ -71,19 +71,6 @@ class RedirectController extends ActionController
     }
 
     /**
-     * Initializes view
-     *
-     * @param ViewInterface $view The view to be initialized
-     *
-     * @return void
-     */
-    protected function initializeView(ViewInterface $view)
-    {
-        parent::initializeView($view);
-        $this->registerDocHeaderButtons();
-    }
-
-    /**
      * Initialize action
      *
      * @return void
@@ -159,6 +146,8 @@ class RedirectController extends ActionController
      */
     public function listAction()
     {
+        $this->registerDocHeaderButtons();
+
         $configurations = $this->configRepository->findAll();
         $this->view->assign('configurations', $configurations);
     }
@@ -170,6 +159,8 @@ class RedirectController extends ActionController
      */
     public function newAction()
     {
+        $this->registerDocHeaderButtons();
+
         /** @var Config $config */
         $config = $this->objectManager->get(Config::class);
         $this->view->assign('config', $config);
@@ -201,6 +192,8 @@ class RedirectController extends ActionController
      */
     public function editAction(Config $config)
     {
+        $this->registerDocHeaderButtons();
+
         $this->view->assign('config', $config);
         $this->view->assign('httpStatus', $this->configRepository->getHttpStatus());
         $this->view->assign('domains', $this->configRepository->getSysDomains());
@@ -230,6 +223,8 @@ class RedirectController extends ActionController
      */
     public function deleteAction($config)
     {
+        $this->registerDocHeaderButtons();
+
         /** @var Config $configObject */
         $configObject = $this->configRepository->findByIdentifier((int)$config);
         $this->addFlashMessage(
@@ -263,6 +258,8 @@ class RedirectController extends ActionController
      */
     public function importFormAction()
     {
+        $this->registerDocHeaderButtons();
+
         $this->view->assignMultiple([
             'separator' => ';',
             'quote' => '"',
