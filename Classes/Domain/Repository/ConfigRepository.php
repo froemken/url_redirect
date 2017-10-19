@@ -56,7 +56,8 @@ class ConfigRepository extends Repository
             'redirectTo',
             '',
             ' AND hidden=0',
-            '', 'domainName ASC'
+            '',
+            'sorting, domainName ASC'
         );
 
         if (empty($sysDomains)) {
