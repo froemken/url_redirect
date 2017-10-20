@@ -51,6 +51,10 @@
         <source>Domain</source>
         <target>Domain</target>
       </trans-unit>
+      <trans-unit id="allDomains" xml:space="preserve">
+        <source>All</source>
+        <target>Alle</target>
+      </trans-unit>
       <trans-unit id="completeDomain" xml:space="preserve">
         <source>Redirect complete domain. Regardless of request URI</source>
         <target>Komplette Domain weiterleiten. Unabhängig von der Anfrage URI</target>

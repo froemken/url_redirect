@@ -39,6 +39,9 @@
       <trans-unit id="domain" xml:space="preserve">
         <source>Domain</source>
       </trans-unit>
+      <trans-unit id="allDomains" xml:space="preserve">
+        <source>All</source>
+      </trans-unit>
       <trans-unit id="completeDomain" xml:space="preserve">
         <source>Redirect complete domain. Regardless of request URI</source>
       </trans-unit>
