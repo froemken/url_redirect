@@ -17,6 +17,7 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
+        'searchFields' => 'request_uri,target_uri',
     ],
     'interface' => [
         'showRecordFieldList' => 'hidden,use_reg_exp,domain,complete_domain,request_uri,target_uri,http_status'
