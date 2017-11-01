@@ -91,7 +91,7 @@ class PreProcess
             'tx_urlredirect_domain_model_config',
             'hidden',
             '0',
-            ' AND ((use_reg_exp=0 AND request_uri=\'' . htmlspecialchars($requestUri) . '\') OR complete_domain=1) AND ' . implode(' AND ', $where),
+            ' AND ((use_reg_exp=0 AND request_uri=\'' . $requestUri . '\') OR complete_domain=1) AND ' . implode(' AND ', $where),
             '', 'complete_domain ASC'
         );
 
