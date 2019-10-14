@@ -2,7 +2,6 @@
     "name": "sfroemken/url_redirect",
     "type": "typo3-cms-extension",
     "description": "Redirect any URL to a new location",
-    "version": "1.2.1",
     "license": "GPL-2.0+",
     "keywords": ["typo3", "TYPO3 CMS", "url", "redirect", "url_redirect"],
     "homepage": "https://www.typo3lexikon.de",
