@@ -91,8 +91,10 @@ class PreProcess
             'tx_urlredirect_domain_model_config',
             'hidden',
             '0',
-            ' AND ((use_reg_exp=0 AND request_uri=\'' . htmlspecialchars($requestUri) . '\') OR complete_domain=1) AND ' . implode(' AND ', $where),
-            '', 'complete_domain ASC'
+            sprintf(
+                ' AND ((use_reg_exp=0 AND request_uri=%s) OR complete_domain=1) AND ' . implode(' AND ', $where),
+                $GLOBALS['TYPO3_DB']->fullQuoteStr($requestUri, 'tx_urlredirect_domain_model_config')
+            ),'', 'complete_domain ASC'
         );
 
         if (empty($redirects)) {
@@ -147,8 +149,11 @@ class PreProcess
         $domain = DatabaseUtility::getRecordRaw(
             'sys_domain',
             sprintf(
-                'domainName=\'%s\' AND redirectTo=\'\' AND hidden=0',
-                htmlspecialchars(GeneralUtility::getIndpEnv('HTTP_HOST'))
+                'domainName=%s AND redirectTo=\'\' AND hidden=0',
+                $GLOBALS['TYPO3_DB']->fullQuoteStr(
+                    GeneralUtility::getIndpEnv('HTTP_HOST'),
+                    'tx_urlredirect_domain_model_config'
+                )
             ),
             'uid'
         );
